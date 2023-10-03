@@ -12,7 +12,7 @@ delta = { #移動量タプル
     pg.K_RIGHT: (+5,0)
 }
 
-def check_boung(obj_rct: pg.Rect):#pg.Rectのクラスのインスタンスが来ることを指定
+def check_bound(obj_rct: pg.Rect):#pg.Rectのクラスのインスタンスが来ることを指定
     """
     引数：こうかとんRectかばくだんRect
     戻り値：タプル(横方向判定効果、縦方向判定効果)
@@ -61,14 +61,21 @@ def main():
             if key_lst[key] :#keyが押されていたら
                 sum_mv[0] += mv[0] #横方向の合計移動量
                 sum_mv[1] += mv[1] #縦方向の合計移動量
-
-
         kk_rct.move_ip(sum_mv[0],sum_mv[1])
+
+        if check_bound(kk_rct) != (True,True):
+            kk_rct.move_ip(-sum_mv[0],-sum_mv[1])
         screen.blit(kk_img,kk_rct)
 
 
         """ばくだん"""
         bd_rct.move_ip(vx,vy) #練習2　爆弾を移動させる
+        yoko, tate = check_bound(bd_rct)
+        if not yoko: #横方向にはみ出したら
+            vx *= -1
+        if not tate: #縦方向にはみ出したら
+            vy *= -1
+
         screen.blit(bd_img,bd_rct)#練習1　Rectを使って試しにblit
         pg.display.update()
         tmr += 1
