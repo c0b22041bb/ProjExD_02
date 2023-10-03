@@ -43,12 +43,13 @@ def main():
     kk_img2 = pg.transform.flip(kk_img, True, False) 
     muki = {
         (-5,0) :pg. transform.rotozoom (kk_img, 0,1.0), 
-        (-5, -5):pg.transform.rotozoom (kk_img, 45, 1.0),
+        (-5, -5):pg.transform.rotozoom (kk_img, -45, 1.0),
         (0, -5) :pg. transform.rotozoom (kk_img2,90,1.0), 
         (5, -5) :pg. transform.rotozoom (kk_img2, 45,1.0),        
         (5,0) :pg. transform. rotozoom (kk_img2,0,1.0), 
         (5,5):pg.transform.rotozoom(kk_img2, -45,1.0), 
         (0, 5) :pg. transform.rotozoom(kk_img2, -90,1.0),
+        (-5, 5) :pg. transform.rotozoom(kk_img,45 ,1.0),
         (0,0): kk_img
     }
 
